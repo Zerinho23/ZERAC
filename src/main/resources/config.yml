@@ -1,0 +1,270 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║              ZERAC AntiCheat Configuration               ║
+# ║                    Version 1.0.0                         ║
+# ╚══════════════════════════════════════════════════════════╝
+
+plugin:
+  prefix: "<gradient:#6C63FF:#A78BFA>[ZERAC]</gradient>"
+  debug: false
+  verbose: false
+  locale: "es"
+  # Server name shown in alerts and messages
+  server-name: "BoxPvP-01"
+  # License key for premium features (global blacklist sync, etc.)
+  license-key: "YOUR_LICENSE_KEY_HERE"
+
+# ── Database Configuration ────────────────────────────────────────────────────
+database:
+  type: SQLITE   # SQLITE or MYSQL
+  sqlite:
+    file: "zerac.db"
+  mysql:
+    host: "localhost"
+    port: 3306
+    database: "zerac"
+    username: "root"
+    password: ""
+    pool-size: 10
+    connection-timeout: 30000
+    max-lifetime: 1800000
+
+# ── Redis Configuration (optional) ────────────────────────────────────────────
+redis:
+  enabled: false
+  host: "localhost"
+  port: 6379
+  password: ""
+  database: 0
+  # TTL for cached data in seconds
+  cache-ttl: 300
+
+# ── Global Blacklist API ────────────────────────────────────────────────────
+blacklist:
+  enabled: true
+  api-url: "https://api.zerac.gg"
+  api-token: "YOUR_API_TOKEN_HERE"
+  # How often to sync with global API (minutes)
+  sync-interval: 5
+  # Block players on join if globally blacklisted
+  block-on-join: true
+  # Cache blacklist locally to reduce API calls
+  local-cache: true
+
+# ── AntiVPN Configuration ────────────────────────────────────────────────────
+anti-vpn:
+  enabled: true
+  provider: "proxycheck"   # proxycheck or ipqualityscore
+  api-key: "YOUR_ANTIVPN_API_KEY"
+  # Action on VPN detection: KICK, BAN, LOG
+  action: KICK
+  # Allowed countries (empty = all allowed). ISO 3166-1 alpha-2
+  whitelist-countries: []
+  # Cache results to avoid repeated API calls
+  cache-ttl: 3600
+  # Whitelist specific IPs
+  whitelist-ips:
+    - "127.0.0.1"
+
+# ── Punishment System ────────────────────────────────────────────────────────
+punishments:
+  # Auto-detect installed ban plugin (LITEBANS, ADVANCEDBAN, VANILLA)
+  provider: AUTO
+  # Default ban duration (0 = permanent)
+  default-ban-duration: 0
+  default-ban-reason: "Hacking - ZERAC AntiCheat"
+  # VL thresholds for automatic punishment
+  vl-thresholds:
+    warn: 50
+    kick: 75
+    ban: 100
+    global-ban: 150
+
+# ── Discord Webhooks ────────────────────────────────────────────────────────
+webhooks:
+  detection:
+    enabled: false
+    url: ""
+    # Min VL to trigger webhook
+    min-vl: 50
+  ban:
+    enabled: false
+    url: ""
+  staff-alerts:
+    enabled: false
+    url: ""
+  vpn:
+    enabled: false
+    url: ""
+
+# ── Checks Configuration ────────────────────────────────────────────────────
+checks:
+
+  # ── Combat Checks ──────────────────────────────────────────────────────────
+  KillAura:
+    enabled: true
+    experimental: false
+    vl-increment: 15
+    vl-decay: 1
+    max-vl: 100
+    setback: true
+    punishment: BAN
+    debug: false
+    # Max angle deviation for legitimate hits
+    max-angle-diff: 30.0
+    # Max attacks per tick
+    max-attacks-per-tick: 3
+
+  Reach:
+    enabled: true
+    experimental: false
+    vl-increment: 15
+    vl-decay: 1
+    max-vl: 100
+    setback: true
+    punishment: BAN
+    debug: false
+    # Max reach distance (survival: 3.0, creative: 5.0)
+    max-reach: 3.1
+    # Tolerance buffer (reduces false positives)
+    tolerance: 0.05
+
+  AimAssist:
+    enabled: true
+    experimental: true
+    vl-increment: 8
+    vl-decay: 2
+    max-vl: 100
+    setback: false
+    punishment: KICK
+    debug: false
+    # Min GCD variance (too-perfect aim)
+    min-gcd-variance: 0.0001
+    # Cinematic camera detection
+    detect-cinematic: true
+
+  AutoClicker:
+    enabled: true
+    experimental: false
+    vl-increment: 10
+    vl-decay: 2
+    max-vl: 100
+    setback: false
+    punishment: BAN
+    debug: false
+    # Max CPS (clicks per second)
+    max-cps: 20
+    # Min CPS for suspicion (too consistent = macro)
+    consistency-threshold: 0.95
+
+  # ── Movement Checks ────────────────────────────────────────────────────────
+  Speed:
+    enabled: true
+    experimental: false
+    vl-increment: 10
+    vl-decay: 1
+    max-vl: 100
+    setback: true
+    punishment: BAN
+    debug: false
+    # Speed multiplier tolerance above base speed
+    max-speed-multiplier: 1.05
+
+  Fly:
+    enabled: true
+    experimental: false
+    vl-increment: 20
+    vl-decay: 1
+    max-vl: 100
+    setback: true
+    punishment: BAN
+    debug: false
+    # How many ticks above ground before flagging
+    airtime-threshold: 20
+    # Vertical velocity tolerance
+    gravity-tolerance: 0.02
+
+  Velocity:
+    enabled: true
+    experimental: false
+    vl-increment: 12
+    vl-decay: 1
+    max-vl: 100
+    setback: false
+    punishment: BAN
+    debug: false
+    # Min percentage of knockback that must be taken (0.0–1.0)
+    min-velocity-acceptance: 0.85
+
+  Timer:
+    enabled: true
+    experimental: false
+    vl-increment: 20
+    vl-decay: 2
+    max-vl: 100
+    setback: true
+    punishment: BAN
+    debug: false
+    # Max expected ticks per second (20 = normal)
+    max-tps: 21.0
+
+  NoSlow:
+    enabled: true
+    experimental: false
+    vl-increment: 10
+    vl-decay: 1
+    max-vl: 100
+    setback: false
+    punishment: BAN
+    debug: false
+
+  Scaffold:
+    enabled: true
+    experimental: false
+    vl-increment: 12
+    vl-decay: 1
+    max-vl: 100
+    setback: false
+    punishment: BAN
+    debug: false
+    # Max block placements per second
+    max-place-per-second: 8
+    # Rotation check tolerance
+    rotation-tolerance: 5.0
+
+  # ── World Checks ───────────────────────────────────────────────────────────
+  FastBreak:
+    enabled: true
+    experimental: false
+    vl-increment: 8
+    vl-decay: 1
+    max-vl: 100
+    setback: false
+    punishment: BAN
+    debug: false
+    # % faster than legit break time before flagging
+    max-speed-percent: 0.85
+
+  FastPlace:
+    enabled: true
+    experimental: false
+    vl-increment: 8
+    vl-decay: 1
+    max-vl: 100
+    setback: false
+    punishment: BAN
+    debug: false
+    # Min ticks between block placements
+    min-place-delay: 2
+
+# ── Alerts Configuration ────────────────────────────────────────────────────
+alerts:
+  # Format uses MiniMessage syntax
+  format: "<prefix> <gold><player></gold> <gray>detected using</gray> <red><check></red> <gray>(<multiplier>x)</gray> <dark_gray>—</dark_gray> <gray>VL:</gray> <yellow><vl></yellow><gray>/</gray><red><max-vl></red>"
+  # Show ping, TPS and coords in hover
+  hover: true
+  # Sound played to staff on alert
+  sound: "ENTITY_EXPERIENCE_ORB_PICKUP"
+  # Min VL before broadcasting to staff
+  min-broadcast-vl: 10
+  # Cooldown between alerts for same check (ticks)
+  cooldown: 40
