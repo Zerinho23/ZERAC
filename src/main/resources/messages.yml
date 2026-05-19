@@ -1,0 +1,142 @@
+# ╔══════════════════════════════════════════════════════════╗
+# ║            ZERAC Messages Configuration                  ║
+# ║    Uses MiniMessage format: https://docs.advntr.dev      ║
+# ╚══════════════════════════════════════════════════════════╝
+
+# Prefix used in all messages
+prefix: "<gradient:#6C63FF:#A78BFA>[ZERAC]</gradient>"
+
+# General messages
+general:
+  no-permission: "<prefix> <red>No tienes permiso para ejecutar esto."
+  player-only: "<prefix> <red>Este comando es solo para jugadores."
+  reload-success: "<prefix> <green>Configuración recargada correctamente."
+  player-not-found: "<prefix> <red>Jugador no encontrado: <yellow><player></yellow>"
+
+# Alert format (sent to staff)
+alert:
+  format: "<prefix> <gold><player></gold> <gray>detectado usando</gray> <red><check></red> <gray>(<multiplier>x)</gray> <dark_gray>—</dark_gray> <gray>VL:</gray> <yellow><vl></yellow><gray>/</gray><red><max-vl></red>"
+  hover: |
+    <gray>Jugador: <white><player>
+    <gray>Check: <red><check>
+    <gray>VL actual: <yellow><vl>/<max-vl>
+    <gray>Ping: <white><ping>ms
+    <gray>TPS: <white><tps>
+    <gray>Versión: <white><version>
+    <gray>Coords: <white><x>, <y>, <z>
+    <gray>Servidor: <white><server>
+    <newline><dark_gray>Click para teletransportarte
+
+# Punishment messages
+punishment:
+  ban-screen: |
+    <newline>
+    <dark_purple>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_purple>
+    <newline>
+    <gradient:#6C63FF:#A78BFA><bold>     ZERAC - SANCIÓN</bold></gradient>
+    <newline>
+    <white>Has sido <red><bold>baneado</bold></red> del servidor
+    <newline>
+    <gray>  Razón: <red><reason>
+    <gray>  Servidor: <white><server>
+    <gray>  ID: <yellow>#<id>
+    <newline>
+    <dark_gray>Tu acceso fue detectado como ilegítimo.
+    <dark_gray>Si crees que esto es un error, contacta:
+    <newline>
+    <aqua><bold>  discord.gg/zerac
+    <newline>
+    <dark_purple>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_purple>
+    <newline>
+
+  global-ban-screen: |
+    <newline>
+    <dark_red>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_red>
+    <newline>
+    <gradient:#FF4444:#FF8888><bold>     ZERAC - BLACKLIST GLOBAL</bold></gradient>
+    <newline>
+    <white>Has sido baneado <red><bold>globalmente</bold></red>
+    <newline>
+    <gray>  Razón: <red><reason>
+    <gray>  Servidor: <white><server>
+    <gray>  ID: <yellow>#<id>
+    <newline>
+    <dark_gray>Tu acceso fue revocado en todos los servidores
+    <dark_gray>que utilizan la red ZERAC AntiCheat.
+    <newline>
+    <aqua><bold>  discord.gg/zerac
+    <newline>
+    <dark_red>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_red>
+    <newline>
+
+  kick-reason: "<gradient:#6C63FF:#A78BFA><bold>ZERAC AntiCheat</bold></gradient>\n<newline>\n<gray>Has sido expulsado por comportamiento sospechoso.\n<gray>Razón: <red><reason>"
+
+  blacklisted-join: |
+    <newline>
+    <dark_red>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_red>
+    <newline>
+    <gradient:#FF4444:#FF8888><bold>  ZERAC - ACCESO DENEGADO</bold></gradient>
+    <newline>
+    <white>Estás en la <red><bold>Blacklist Global</bold></red> de ZERAC
+    <newline>
+    <gray>  Razón: <red><reason>
+    <gray>  ID: <yellow>#<id>
+    <newline>
+    <aqua><bold>  discord.gg/zerac
+    <newline>
+    <dark_red>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_red>
+    <newline>
+
+# AntiVPN messages
+anti-vpn:
+  kicked: |
+    <newline>
+    <dark_purple>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_purple>
+    <newline>
+    <gradient:#6C63FF:#A78BFA><bold>     ZERAC - ANTI VPN</bold></gradient>
+    <newline>
+    <white>Tu conexión fue detectada como <red><bold>VPN/Proxy</bold></red>
+    <newline>
+    <gray>  IP: <red><ip>
+    <gray>  Servidor: <white><server>
+    <newline>
+    <dark_gray>Desconecta tu VPN para acceder al servidor.
+    <dark_gray>Si no usas VPN, contacta un administrador:
+    <newline>
+    <aqua><bold>  discord.gg/zerac
+    <newline>
+    <dark_purple>▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬▬</dark_purple>
+    <newline>
+
+# Staff notifications
+staff:
+  alerts-enabled: "<prefix> <green>Alertas activadas."
+  alerts-disabled: "<prefix> <red>Alertas desactivadas."
+  debug-enabled: "<prefix> <green>Debug activado para <yellow><check></yellow>."
+  debug-disabled: "<prefix> <red>Debug desactivado para <yellow><check></yellow>."
+  vpn-detected: "<prefix> <gold><player></gold> <gray>detectado con VPN —</gray> <red><ip>"
+
+# Commands
+commands:
+  stats: |
+    <newline>
+    <gradient:#6C63FF:#A78BFA><bold>  ZERAC Statistics</bold></gradient>
+    <newline>
+    <gray>  TPS: <green><tps>
+    <gray>  Players: <white><players>
+    <gray>  Total detections: <yellow><detections>
+    <gray>  Total bans: <red><bans>
+    <gray>  Uptime: <white><uptime>
+    <gray>  Version: <white><version>
+    <newline>
+
+  blacklist-header: "<newline><gradient:#6C63FF:#A78BFA><bold>  ZERAC Global Blacklist</bold></gradient><newline>"
+  blacklist-entry: "  <gray><index>. <gold><player></gold> <dark_gray>(<gray><uuid><dark_gray>)</dark_gray> — <red><reason>"
+  blacklist-empty: "<prefix> <gray>La blacklist global está vacía."
+  blacklist-added: "<prefix> <green><player> añadido a la blacklist global. ID: <yellow>#<id>"
+  blacklist-removed: "<prefix> <green><player> removido de la blacklist global."
+  blacklist-not-found: "<prefix> <red><player> no está en la blacklist global."
+
+  check-header: "<newline><gradient:#6C63FF:#A78BFA><bold>  ZERAC — <player></bold></gradient><newline>"
+  check-entry: "  <gray><check>: VL <yellow><vl></yellow><gray>/<red><max-vl></red> <dark_gray>(<gray>flags: <white><flags><dark_gray>)"
+  check-clean: "<prefix> <green><player> no tiene flags activos."
