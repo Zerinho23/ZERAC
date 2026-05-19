@@ -1,0 +1,82 @@
+name: ZERAC
+version: '${project.version}'
+main: me.zerinho23.zerac.ZeracPlugin
+api-version: '1.21'
+description: Advanced AntiCheat Plugin with Global Blacklist
+authors: [zerinho23]
+website: https://zerac.gg
+
+# Soft dependencies — plugin auto-detects and integrates
+softdepend:
+  - LiteBans
+  - AdvancedBan
+  - ViaVersion
+  - Geyser-Spigot
+  - floodgate
+  - PacketEvents
+
+# Load before other plugins to intercept packets first
+load: STARTUP
+loadbefore:
+  - LiteBans
+  - AdvancedBan
+
+commands:
+  zerac:
+    description: Main ZERAC command
+    usage: /zerac <alerts|debug|gui|reload|stats|blacklist|check|verbose>
+    permission: zerac.command
+    aliases: [zr, anticheat, ac]
+
+permissions:
+  zerac.command:
+    description: Access to /zerac command
+    default: op
+  zerac.alerts:
+    description: Receive anticheat alerts
+    default: op
+  zerac.debug:
+    description: Enable debug mode for checks
+    default: op
+  zerac.bypass:
+    description: Bypass all anticheat checks
+    default: false
+  zerac.bypass.combat:
+    description: Bypass combat checks
+    default: false
+  zerac.bypass.movement:
+    description: Bypass movement checks
+    default: false
+  zerac.bypass.world:
+    description: Bypass world checks
+    default: false
+  zerac.bypass.player:
+    description: Bypass player checks
+    default: false
+  zerac.gui:
+    description: Access to ZERAC GUI
+    default: op
+  zerac.reload:
+    description: Reload ZERAC configuration
+    default: op
+  zerac.stats:
+    description: View ZERAC statistics
+    default: op
+  zerac.blacklist.manage:
+    description: Manage global blacklist
+    default: op
+  zerac.verbose:
+    description: Receive verbose/packet debug info
+    default: op
+  zerac.admin:
+    description: Full admin access
+    default: op
+    children:
+      zerac.command: true
+      zerac.alerts: true
+      zerac.debug: true
+      zerac.gui: true
+      zerac.reload: true
+      zerac.stats: true
+      zerac.blacklist.manage: true
+      zerac.verbose: true
